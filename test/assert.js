@@ -1,5 +1,4 @@
 ;(function(exports) {
-
   exports.ok = function(val) {
     if(!val) {
       throw new Error('not ok: ' + val)

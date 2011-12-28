@@ -7,7 +7,7 @@ suite('Canvas', function() {
 
   })
 
-  suite('read/write', function() {
+  suite('integer', function() {
     test('pack/retrieve integers in [1..31] bytes, signed or unsigned', function() {
       for(var signed = 0; signed < 2; ++signed)
         for(var size = 1; size < 32; ++size) {
@@ -72,6 +72,40 @@ suite('Canvas', function() {
           }
         )
       }
+    })
+  })
+
+  suite('string/', function() {
+    test('pack/retrieve long strings', function() {
+      var xhr = new XMLHttpRequest
+        , write_stream
+        , read_stream
+        , canvas
+        , instance
+
+      xhr.open('GET', '/README.md', false)
+      xhr.send(null)
+
+      ;[0x100, 0x10000].forEach(function(size) {
+        var cls = new pacman([
+          'data', pacman.types.string(size)
+        ])
+
+        canvas = document.createElement('canvas')
+        write_stream = new pacman.canvas(canvas, canvas.getContext('2d'))
+
+        instance = new cls(xhr.responseText)
+        pacman.dehydrate(write_stream, instance)
+
+        write_stream.flush()
+
+        read_stream = new pacman.canvas(canvas, write_stream.context)
+
+        pacman.hydrate(read_stream, cls, function(result) {
+          assert.equal(result.data, xhr.responseText, 'char_size of '+size)
+        })
+      })
+
     })
   })
 })
