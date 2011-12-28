@@ -3,7 +3,7 @@
 A library for reading and writing tightly packed bit streams of data
 into and out of canvas PNGs.
 
-![this readme]()
+![this readme](https://github.com/chrisdickinson/pacman.js/raw/master/readme.png)
 
 ## API
 
