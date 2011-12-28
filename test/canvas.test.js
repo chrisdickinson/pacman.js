@@ -7,7 +7,7 @@ suite('Canvas', function() {
 
   })
 
-  suite('integer', function() {
+  suite('integer/', function() {
     test('pack/retrieve integers in [1..31] bytes, signed or unsigned', function() {
       for(var signed = 0; signed < 2; ++signed)
         for(var size = 1; size < 32; ++size) {
@@ -32,8 +32,8 @@ suite('Canvas', function() {
             , cls
             , function(result) {
                 assert.list_equal(stream.write_buffer, in_stream.data.slice(0, stream.write_buffer.length)) 
-                assert.equal(simple.x, expected, 'at size '+size, 'at signed '+!!signed, stream.write_buffer.map(pad).join(''))
-                assert.equal(result.x, expected, 'at size '+size, 'at signed '+!!signed, stream.write_buffer.map(pad).join(''))
+                assert.equal(simple.x, expected, 'at size '+size, 'at signed '+!!signed)
+                assert.equal(result.x, expected, 'at size '+size, 'at signed '+!!signed)
               }
           )
         }
@@ -66,9 +66,7 @@ suite('Canvas', function() {
           , function(result) {
             assert.list_equal(stream.write_buffer, in_stream.data.slice(0, stream.write_buffer.length), 'at '+x_width+', '+y_width)
             assert.equal(result.x, expected_x, '(x) at '+x_width+', '+y_width)
-            assert.equal(result.y, expected_y, '(y) at '+x_width+', '+y_width
-              , stream.write_buffer.map(pad).join('')
-              , pad(expected_y))
+            assert.equal(result.y, expected_y, '(y) at '+x_width+', '+y_width)
           }
         )
       }
