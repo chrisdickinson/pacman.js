@@ -5,6 +5,8 @@ into and out of canvas PNGs.
 
 ![this readme](https://github.com/chrisdickinson/pacman.js/raw/master/readme.png)
 
+The above image was generated using pacman.js -- it contains this readme!
+
 ## API
 
 ### cls = new pacman([attr_name, attr_type, ...])
